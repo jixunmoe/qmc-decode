@@ -31,10 +31,15 @@ for (let i = 0; i < (0x7FFF * 7); i++)
 
 	if (i < data.length) newKey.push(privKey[c]);
 	derive.push(privKey[c]);
+	
+	if (i > 0x7FFF)
+	{
+		// TODO: πÊ‘Ú±‰ªª
+	}
 
 	if (data[i % data.length] !== c)
 	{
-		throw new Error('failed to validate at ' + i);
+		// throw new Error('failed to validate at ' + i);
 	}
 }
 
