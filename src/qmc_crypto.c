@@ -1,4 +1,4 @@
-﻿#include "Crypto.h"
+﻿#include "qmc_crypto.h"
 
 #define OPTIMISE_CRYPTO (1)
 
@@ -49,25 +49,15 @@ unsigned char privKey[256] = {
 };
 #endif
 
-
-Crypto::Crypto()
-{
-}
-
-
-Crypto::~Crypto()
-{
-}
-
-void Crypto::transform(uint8_t* data, unsigned int offset, size_t size)
+void qmc_crypto_transform(uint8_t* data, unsigned int offset, size_t size)
 {
 	for (unsigned int i = 0; i < size; i++)
 	{
-		data[i] ^= encode(offset + i);
+		data[i] ^= qmc_crypto_encode(offset + i);
 	}
 }
 
-uint8_t Crypto::encode(unsigned int i)
+uint8_t qmc_crypto_encode(unsigned int i)
 {
 #if OPTIMISE_CRYPTO
 	if (i > 0x7FFF) {
