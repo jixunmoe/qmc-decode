@@ -61,7 +61,6 @@ uint8_t qmc_crypto_encode(unsigned int i)
 {
 #if OPTIMISE_CRYPTO
 	if (i > 0x7FFF) {
-		// 腾讯傻逼算法写歪了
 		return privKey[(i % 0x7FFF) & 0x7F];
 	}
 	else {

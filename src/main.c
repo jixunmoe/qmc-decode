@@ -16,24 +16,34 @@ int main(int argc, char** argv)
 	}
 
 	FILE* fIn = fopen(argv[1], "rb");
+	if (fIn == NULL) {
+		printf("Could not open input file %s\n", argv[1]);
+		return 2;
+	}
 	FILE* fOut = fopen(argv[2], "wb");
-	fseek(fIn , 0 , SEEK_SET);
+	if (fOut == NULL) {
+		fclose(fIn);
+		printf("Could not open output file %s\n", argv[2]);
+		return 3;
+	}
+	fseek(fIn, 0 , SEEK_SET);
 
 	uint8_t* buf = (uint8_t*)malloc(BUF_SIZE * sizeof(uint8_t));
 	unsigned int offset = 0;
 
 	while (!feof(fIn))
 	{
-	    size_t bytesRead = fread ((char*)buf, sizeof(char), BUF_SIZE, fIn);
+	    size_t bytesRead = fread ((char*)buf, sizeof(uint8_t), BUF_SIZE, fIn);
 
 		if (bytesRead > 0)
 		{
 			qmc_crypto_transform(buf, offset, bytesRead);
-			// output.write((char*)buf, bytesRead);
-			fwrite((char*)buf, sizeof(char), bytesRead, fOut);
+			fwrite((char*)buf, sizeof(uint8_t), bytesRead, fOut);
 			offset += bytesRead;
 		}
 	}
 	printf("ok: %u bytes processed.\n", offset);
+	fclose(fIn);
+	fclose(fOut);
 	return 0;
 }
