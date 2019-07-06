@@ -4,20 +4,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-// 1M buf size
-// Check windows
-#if defined(__x86_64__) || defined(_WIN64) || defined(__ppc64__) || defined(__x86_64__)
-#define IS_WIN64 (true)
-#else
-#define IS_WIN64 (false)
-#endif
-
-#if IS_WIN64
-#define BUF_SIZE (1024*1024*4)
-#else
-#define BUF_SIZE (1024*1024)
-#endif
-
 int main(int argc, char** argv)
 {
 	printf("QMC decoder (cli) v1.0 by Jixun\n");
