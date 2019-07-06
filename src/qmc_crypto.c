@@ -1,4 +1,4 @@
-﻿#include "qmc_crypto.h"
+#include "qmc_crypto.h"
 
 #define OPTIMISE_CRYPTO (1)
 
