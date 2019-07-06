@@ -48,6 +48,6 @@ int main(int argc, char** argv)
 			offset += bytesRead;
 		}
 	}
-	printf("ok: %ul bytes processed.\n", offset);
+	printf("ok: %u bytes processed.\n", offset);
 	return 0;
 }
