@@ -13,6 +13,8 @@ obj/
 
 repack/
 sample/
+test_sample/
+target/
 
 /qmc_crypto.exe
 /qmc_crypto
