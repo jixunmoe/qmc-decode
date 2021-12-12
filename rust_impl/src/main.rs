@@ -12,9 +12,11 @@ fn main() {
         process::exit(1);
     }
 
-    eprintln!("QMC decoder (cli) v1.0 by Jixun\n");
+    eprintln!("QMC decoder (cli, rust-impl) v1.0 by Jixun\n");
 
     let input_file = argv[1].to_owned();
     let output_file = argv[2].to_owned();
     qmc_decode::decode_qmc_file(&input_file, &output_file).expect("failed to decode");
+
+    eprintln!("ok: saved to {}", output_file);
 }
